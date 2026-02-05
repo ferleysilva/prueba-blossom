@@ -12,10 +12,10 @@ export const useCharacters = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
-  const [filter, setFilter] = useState<{ name?: string }>({});
+  const [filter, setFilter] = useState<{ name?: string; species?: string }>({});
   const [sortOrder, setSortOrder] = useState<SortOrder>(null);
 
-  const fetchCharacters = useCallback(async (page: number = 1, currentFilter?: { name?: string }) => {
+  const fetchCharacters = useCallback(async (page: number = 1, currentFilter?: { name?: string; species?: string }) => {
     try {
         setLoading(true);
         const repository = new CharacterRepositoryImpl(client);

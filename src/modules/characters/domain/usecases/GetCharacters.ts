@@ -7,7 +7,7 @@ export class GetCharacters {
     this.repository = repository;
   }
 
-  async execute(page: number = 1, filter?: { name?: string }): Promise<Character[]> {
+  async execute(page: number = 1, filter?: { name?: string; species?: string }): Promise<Character[]> {
     return this.repository.getCharacters(page, filter);
   }
 }

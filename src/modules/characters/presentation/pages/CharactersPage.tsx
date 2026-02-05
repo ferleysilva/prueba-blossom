@@ -9,7 +9,9 @@ export const CharactersPage = () => {
     loading, 
     error, 
     filter, 
-    setFilter 
+    setFilter,
+    sortOrder,
+    setSortOrder 
   } = useCharacters();
 
   const {
@@ -35,6 +37,8 @@ export const CharactersPage = () => {
             setFilter={setFilter}
             favorites={favorites}
             onToggleFavorite={toggleFavorite}
+            sortOrder={sortOrder}
+            setSortOrder={setSortOrder}
           />
       </div>
 
