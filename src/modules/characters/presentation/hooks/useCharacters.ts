@@ -19,8 +19,27 @@ export const useCharacters = () => {
     try {
         setLoading(true);
         const repository = new CharacterRepositoryImpl(client);
+        
+        const apiFilter: any = { ...currentFilter };
+        const searchTerm = currentFilter?.name?.toLowerCase();
+
+        if (searchTerm) {
+            if (['alive', 'dead', 'unknown'].includes(searchTerm)) {
+                apiFilter.status = searchTerm;
+                delete apiFilter.name;
+            } else if (['female', 'male', 'genderless', 'unknown'].includes(searchTerm)) {
+                apiFilter.gender = searchTerm;
+                delete apiFilter.name;
+            } else if (['human', 'alien'].includes(searchTerm)) {
+                 if (!apiFilter.species) {
+                     apiFilter.species = searchTerm;
+                     delete apiFilter.name;
+                 }
+            }
+        }
+
         const getCharactersUseCase = new GetCharacters(repository);
-        const result = await getCharactersUseCase.execute(page, currentFilter);
+        const result = await getCharactersUseCase.execute(page, apiFilter);
         setCharacters(result);
         setError(null);
     } catch (err: any) {

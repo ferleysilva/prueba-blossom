@@ -11,7 +11,7 @@ export class CharacterRepositoryImpl implements CharacterRepository {
     this.client = client;
   }
 
-  async getCharacters(page: number = 1, filter?: { name?: string; species?: string }): Promise<Character[]> {
+  async getCharacters(page: number = 1, filter?: { name?: string; species?: string; status?: string; gender?: string }): Promise<Character[]> {
     const { data } = await this.client.query({
       query: GET_CHARACTERS,
       variables: { page, filter },

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
   MagnifyingGlassIcon,
   AdjustmentsVerticalIcon,
@@ -32,6 +33,7 @@ export const CharacterListSidebar: React.FC<Props> = ({
   sortOrder,
   setSortOrder,
 }) => {
+  const { id: selectedId } = useParams<{ id: string }>();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [activeView, setActiveView] = useState<"All" | "Starred" | "Others">(
     "All",
@@ -238,6 +240,7 @@ export const CharacterListSidebar: React.FC<Props> = ({
                 character={character}
                 isFavorite={true}
                 onToggleFavorite={() => onToggleFavorite(character.id)}
+                isSelected={character.id === selectedId}
               />
             ))}
 
@@ -252,6 +255,7 @@ export const CharacterListSidebar: React.FC<Props> = ({
                     character={character}
                     isFavorite={false}
                     onToggleFavorite={() => onToggleFavorite(character.id)}
+                    isSelected={character.id === selectedId}
                   />
                 ))}
               </div>
@@ -270,6 +274,7 @@ export const CharacterListSidebar: React.FC<Props> = ({
                     character={character}
                     isFavorite={true}
                     onToggleFavorite={() => onToggleFavorite(character.id)}
+                    isSelected={character.id === selectedId}
                   />
                 ))}
               </div>
@@ -286,6 +291,7 @@ export const CharacterListSidebar: React.FC<Props> = ({
                     character={character}
                     isFavorite={false}
                     onToggleFavorite={() => onToggleFavorite(character.id)}
+                    isSelected={character.id === selectedId}
                   />
                 ))}
               </div>
