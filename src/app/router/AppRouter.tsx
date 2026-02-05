@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
+import { Home } from '../../modules/characters/presentation/pages/Home';
 
 export const AppRouter = () => {
   return (
     <Routes>
-       <Route path="/" element={<div className="text-center p-10 text-2xl font-bold text-gray-700">Welcome to Prueba Blossom</div>} />
+       <Route path="/" element={<Home />} />
     </Routes>
   )
 }
