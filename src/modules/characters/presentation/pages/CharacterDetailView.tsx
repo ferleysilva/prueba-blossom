@@ -6,7 +6,7 @@ import { CharacterDetail } from '../components/CharacterDetail';
 export const CharacterDetailView = () => {
   const { id } = useParams<{ id: string }>();
   const { character, loading, error } = useCharacter(id);
-  const { isFavorite, toggleFavorite } = useCharacterLocalState();
+  const { isFavorite, toggleFavorite, getComments, addComment } = useCharacterLocalState();
 
   if (loading) {
     return (
@@ -30,6 +30,8 @@ export const CharacterDetailView = () => {
         character={character}
         isFavorite={isFavorite(character.id)}
         onToggleFavorite={() => toggleFavorite(character.id)}
+        comments={getComments(character.id)}
+        onAddComment={(text) => addComment(character.id, text)}
     />
   );
 };
