@@ -17,11 +17,14 @@ export const CharactersPage = () => {
   const {
       favorites,
       toggleFavorite,
+      deleteCharacter,
+      isDeleted
   } = useCharacterLocalState();
 
   const location = useLocation();
   const isDetailPage = location.pathname.startsWith('/character/');
 
+  const visibleCharacters = characters.filter(c => !isDeleted(c.id));
   
   return (
     <div className="flex h-screen bg-white overflow-hidden">
@@ -30,13 +33,14 @@ export const CharactersPage = () => {
           ${isDetailPage ? 'hidden md:flex' : 'flex'}
       `}>
           <CharacterListSidebar 
-            characters={characters}
+            characters={visibleCharacters}
             loading={loading}
             error={error}
             filter={filter}
             setFilter={setFilter}
             favorites={favorites}
             onToggleFavorite={toggleFavorite}
+            onDelete={deleteCharacter}
             sortOrder={sortOrder}
             setSortOrder={setSortOrder}
           />

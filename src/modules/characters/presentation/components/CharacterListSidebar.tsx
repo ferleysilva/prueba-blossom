@@ -18,6 +18,7 @@ interface Props {
   setFilter: (filter: { name?: string; species?: string }) => void;
   favorites: string[];
   onToggleFavorite: (id: string) => void;
+  onDelete: (id: string) => void;
   sortOrder: SortOrder;
   setSortOrder: (order: SortOrder) => void;
 }
@@ -30,6 +31,7 @@ export const CharacterListSidebar: React.FC<Props> = ({
   setFilter,
   favorites,
   onToggleFavorite,
+  onDelete,
   sortOrder,
   setSortOrder,
 }) => {
@@ -240,6 +242,7 @@ export const CharacterListSidebar: React.FC<Props> = ({
                 character={character}
                 isFavorite={true}
                 onToggleFavorite={() => onToggleFavorite(character.id)}
+                onDelete={() => onDelete(character.id)}
                 isSelected={character.id === selectedId}
               />
             ))}
@@ -255,6 +258,7 @@ export const CharacterListSidebar: React.FC<Props> = ({
                     character={character}
                     isFavorite={false}
                     onToggleFavorite={() => onToggleFavorite(character.id)}
+                    onDelete={() => onDelete(character.id)}
                     isSelected={character.id === selectedId}
                   />
                 ))}
@@ -274,6 +278,7 @@ export const CharacterListSidebar: React.FC<Props> = ({
                     character={character}
                     isFavorite={true}
                     onToggleFavorite={() => onToggleFavorite(character.id)}
+                    onDelete={() => onDelete(character.id)}
                     isSelected={character.id === selectedId}
                   />
                 ))}
@@ -291,6 +296,7 @@ export const CharacterListSidebar: React.FC<Props> = ({
                     character={character}
                     isFavorite={false}
                     onToggleFavorite={() => onToggleFavorite(character.id)}
+                    onDelete={() => onDelete(character.id)}
                     isSelected={character.id === selectedId}
                   />
                 ))}

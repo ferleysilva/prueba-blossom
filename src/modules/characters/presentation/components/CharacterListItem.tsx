@@ -1,17 +1,25 @@
 import { useNavigate } from 'react-router-dom';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
-import { HeartIcon as HeartIconOutline } from '@heroicons/react/24/outline';
+import { HeartIcon as HeartIconOutline, TrashIcon } from '@heroicons/react/24/outline';
 import type { Character } from '../../domain/entities/Character';
 
 interface Props {
   character: Character;
   isFavorite?: boolean;
   onToggleFavorite?: (e: React.MouseEvent) => void;
+  onDelete?: (e: React.MouseEvent) => void;
   isSelected?: boolean;
 }
 
-export const CharacterListItem: React.FC<Props> = ({ character, isFavorite = false, onToggleFavorite, isSelected = false }) => {
+export const CharacterListItem: React.FC<Props> = ({ character, isFavorite = false, onToggleFavorite, onDelete, isSelected = false }) => {
   const navigate = useNavigate();
+
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (window.confirm(`Are you sure you want to delete ${character.name}?`)) {
+      onDelete && onDelete(e);
+    }
+  };
 
   return (
     <div 
@@ -27,7 +35,7 @@ export const CharacterListItem: React.FC<Props> = ({ character, isFavorite = fal
         <h3 className="text-[16px] font-[600] text-gray-900 truncate">{character.name}</h3>
         <p className="text-[16px] font-[400] text-gray-500 truncate">{character.species}</p>
       </div>
-      <div className="ml-2">
+      <div className="ml-2 flex items-center">
            <button 
              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
              onClick={(e) => {
@@ -40,6 +48,13 @@ export const CharacterListItem: React.FC<Props> = ({ character, isFavorite = fal
                ) : (
                    <HeartIconOutline className="w-[18px] h-[18px] text-gray-400 hover:text-green-500" />
                )}
+           </button>
+           <button 
+             className="p-2 rounded-full hover:bg-gray-100 transition-colors group"
+             onClick={handleDelete}
+             title="Delete character"
+           >
+               <TrashIcon className="w-[18px] h-[18px] text-gray-400 group-hover:text-red-500" />
            </button>
       </div>
     </div>

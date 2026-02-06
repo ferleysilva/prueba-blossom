@@ -9,6 +9,7 @@ export interface Comment {
 export const useCharacterLocalState = () => {
   const [favorites, setFavorites] = useLocalStorage<string[]>('character_favorites', []);
   const [comments, setComments] = useLocalStorage<Record<string, Comment[]>>('character_comments', {});
+  const [deletedCharacters, setDeletedCharacters] = useLocalStorage<string[]>('character_deleted', []);
 
   const toggleFavorite = (characterId: string) => {
     if (favorites.includes(characterId)) {
@@ -39,12 +40,25 @@ export const useCharacterLocalState = () => {
     return comments[characterId] || [];
   };
 
+  const deleteCharacter = (characterId: string) => {
+    if (!deletedCharacters.includes(characterId)) {
+      setDeletedCharacters([...deletedCharacters, characterId]);
+    }
+  };
+
+  const isDeleted = (characterId: string) => {
+    return deletedCharacters.includes(characterId);
+  };
+
   return {
     favorites,
     isFavorite,
     toggleFavorite,
     comments,
     addComment,
-    getComments
+    getComments,
+    deletedCharacters,
+    deleteCharacter,
+    isDeleted
   };
 };

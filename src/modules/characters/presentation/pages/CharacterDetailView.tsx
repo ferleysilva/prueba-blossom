@@ -6,7 +6,7 @@ import { CharacterDetail } from '../components/CharacterDetail';
 export const CharacterDetailView = () => {
   const { id } = useParams<{ id: string }>();
   const { character, loading, error } = useCharacter(id);
-  const { isFavorite, toggleFavorite, getComments, addComment } = useCharacterLocalState();
+  const { isFavorite, toggleFavorite, getComments, addComment, isDeleted } = useCharacterLocalState();
 
   if (loading) {
     return (
@@ -16,7 +16,7 @@ export const CharacterDetailView = () => {
     );
   }
 
-  if (error || !character) {
+  if (error || !character || (id && isDeleted(id))) {
     return (
         <div className="flex flex-col justify-center items-center w-full h-full text-center p-8">
             <p className="text-xl text-gray-500 mb-2">Character not found</p>
