@@ -1,54 +1,180 @@
-# React + TypeScript + Vite
+# 🧬 Rick and Morty Characters App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend application built with React 18, TypeScript, GraphQL, and Clean Architecture to explore characters from the Rick and Morty universe.
 
-Currently, two official plugins are available:
+This project was developed as part of a technical assessment, focusing on scalability, maintainability, code quality, and usability.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 18  
+- TypeScript  
+- Vite  
+- TailwindCSS  
+- React Router v6  
+- Apollo Client (GraphQL)  
+- React Testing Library  
+- Firebase Hosting  
+- GitHub Actions  
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📁 Project Architecture
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The project follows a feature-based Clean Architecture approach to ensure scalability and maintainability.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Folder Structure
+
+src/  
+├── app/  
+│   ├── router/  
+│   └── providers/  
+│  
+├── modules/  
+│   └── characters/  
+│       ├── domain/  
+│       ├── data/  
+│       └── presentation/  
+│  
+├── shared/  
+├── styles/  
+└── main.tsx  
+
+---
+
+## ✨ Features
+
+- List characters in responsive cards  
+- View detailed character information  
+- Mark characters as favorites  
+- Add and manage comments per character  
+- Soft delete characters (logical deletion)  
+- Sort characters (A-Z / Z-A)  
+- Filter by status, species, and gender  
+- Local persistence using LocalStorage  
+- Unit tests for core components  
+
+---
+
+## 🌐 API
+
+This project uses the official Rick and Morty GraphQL API.
+
+Endpoint:  
+https://rickandmortyapi.com/graphql  
+
+Documentation:  
+https://rickandmortyapi.com/documentation/
+
+---
+
+## 🚀 Deployment (Firebase Hosting)
+
+The application is deployed using Firebase Hosting and is publicly available at:
+
+<YOUR_FIREBASE_URL>
+
+### Manual Deployment
+
+npm run build  
+firebase deploy  
+
+---
+
+## 🔄 CI/CD Pipeline (GitHub Actions)
+
+This project uses GitHub Actions for continuous integration and deployment.
+
+### Pipeline Workflow
+
+On every push to main or master, the pipeline executes:
+
+1. Install dependencies  
+2. Run unit tests  
+3. Build the project  
+4. Deploy to Firebase Hosting  
+
+### Workflow File
+
+.github/workflows/deploy.yml  
+
+This ensures automatic and reliable delivery.
+
+---
+
+## 🛠️ Installation
+
+### Prerequisites
+
+- Node.js >= 18  
+- npm or yarn  
+- Firebase CLI  
+
+Install Firebase CLI:
+
+npm install -g firebase-tools  
+
+---
+
+### Clone Repository
+
+git clone <https://github.com/ferleysilva/prueba-blossom.git>  
+cd prueba-blossom 
+
+---
+
+### Install Dependencies
+
+npm install  
+
+---
+
+### Run Development Server
+
+npm run dev  
+
+The application will be available at:
+
+http://localhost:5173  
+
+To check in production:
+
+https://prueba-blossom.web.app
+
+---
+
+## 🧪 Running Tests
+
+npm run test  
+
+---
+
+## 📖 Usage Guide
+
+### Home Page
+
+- Displays all characters in a responsive grid  
+- Includes filters and sorting controls  
+- Click on a card to view details  
+
+### Character Detail Page
+
+- Shows full character information  
+- Allows adding/removing favorites  
+- Supports user comments  
+
+All favorites and comments are stored locally in the browser.
+
+---
+
+## 👨‍💻 Author
+
+Anderson Silva  
+Frontend / Software Developer  
+
+---
+
+## 📄 License
+
+This project is developed for technical evaluation purposes only.
